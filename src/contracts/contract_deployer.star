@@ -72,7 +72,7 @@ def _normalize_artifacts_locators(plan, l1_locator, l2_locator):
 
 
 def deploy_contracts(
-    plan, priv_key, l1_config_env_vars, optimism_args, l1_network, altda_args
+    plan, priv_key, l1_config_env_vars, optimism_args, l1_network, altda_args, espresso_args
 ):
     l2_chain_ids_list = [
         str(chain.network_params.network_id) for chain in optimism_args.chains
@@ -199,6 +199,10 @@ def deploy_contracts(
     for i, chain in enumerate(optimism_args.chains):
         chain_id = str(chain.network_params.network_id)
         intent_chain = dict(CANNED_VALUES)
+
+        if chain.network_params.pre_approve_batcher:
+            intent_chain["preApprovedBatcherKey"] = read_chain_cmd("batcher", chain_id)
+
         intent_chain.update(
             {
                 "deployOverrides": {
@@ -207,6 +211,7 @@ def deploy_contracts(
                         True if chain.network_params.fund_dev_accounts else False
                     ),
                 },
+               "espressoEnabled": espresso_args != None,
                 "baseFeeVaultRecipient": read_chain_cmd(
                     "baseFeeVaultRecipient", chain_id
                 ),
@@ -281,6 +286,7 @@ def deploy_contracts(
                 # merge the two intent.json files, ensuring that the chains array is merged correctly
                 "jq -s 'add + {chains: map(.chains) | transpose | map(add)}' /network-data/intent-a.json /network-data/intent-b.json > /network-data/intent-merged.json",
                 # convert the merged intent.json back to toml
+                "cat /network-data/intent-merged.json",
                 "cat /network-data/intent-merged.json | dasel -r json -w toml > /network-data/intent.toml",
             ]
         ),

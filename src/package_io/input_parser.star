@@ -327,12 +327,14 @@ def default_network_params():
         "isthmus_time_offset": None,
         "interop_time_offset": None,
         "fund_dev_accounts": True,
+        "pre_approve_batcher": False,
     }
 
 
 def _default_batcher_params(registry):
     return {
         "image": registry.get(_registry.OP_BATCHER),
+        "dry_run": False,
         "extra_params": [],
     }
 
