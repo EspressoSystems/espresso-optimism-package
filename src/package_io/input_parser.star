@@ -501,6 +501,7 @@ def default_chains():
         }
     ]
 
+
 def default_network_params():
     return {
         "network": "kurtosis",
@@ -542,6 +543,7 @@ def default_proposer_params():
         "game_type": 1,
         "proposal_interval": "10m",
     }
+
 
 def default_participant():
     return {

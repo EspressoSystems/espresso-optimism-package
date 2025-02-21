@@ -66,7 +66,6 @@ def launch(
         plan.print(config.cmd)
         return "op_batcher"
 
-
     batcher_service = plan.add_service(service_name, config)
 
     batcher_http_port = batcher_service.ports[BATCHER_HTTP_PORT_ID]

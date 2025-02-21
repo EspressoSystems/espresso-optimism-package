@@ -134,7 +134,7 @@ ROOT_PARAMS = [
     "global_node_selectors",
     "global_tolerations",
     "persistent",
-    "espresso"
+    "espresso",
 ]
 
 EXTERNAL_L1_NETWORK_PARAMS = [
