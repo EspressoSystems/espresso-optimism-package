@@ -1,7 +1,7 @@
 ethereum_package = import_module("github.com/ethpandaops/ethereum-package/main.star")
 
 IMAGE_NAME_ESPRESSO = (
-    "ghcr.io/espressosystems/espresso-sequencer/espresso-dev-node:main"
+    "ghcr.io/espressosystems/espresso-sequencer/espresso-dev-node:latest"
 )
 SERVICE_NAME_ESPRESSO = "op-espresso-devnode"
 
