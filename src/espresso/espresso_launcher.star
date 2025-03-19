@@ -1,7 +1,7 @@
 ethereum_package = import_module("github.com/ethpandaops/ethereum-package/main.star")
 
 IMAGE_NAME_ESPRESSO = (
-    "ghcr.io/espressosystems/espresso-sequencer/espresso-dev-node:latest"
+    "ghcr.io/espressosystems/espresso-sequencer/espresso-dev-node:main"
 )
 SERVICE_NAME_ESPRESSO = "op-espresso-devnode"
 
@@ -40,22 +40,6 @@ USED_PORTS_DAS = {
 }
 
 
-def launch_das(plan, image, sequencer_api_url):
-    cmd = [
-        "da-server",
-        "--espresso.url=" + sequencer_api_url,
-        "--addr=0.0.0.0",
-        "--port=" + str(DAS_PORT_NUMBER),
-        "--log.level=debug",
-        "--generic-commitment=true",
-    ]
-
-    config = ServiceConfig(image=image, ports=USED_PORTS_DAS, cmd=cmd)
-
-    service = plan.add_service(SERVICE_NAME_ESPRESSO_DAS, config)
-    plan.print(service)
-
-
 def launch_espresso(plan, l1_rpc_url, espresso_params):
     env_vars = {
         "ESPRESSO_BUILDER_PORT": str(BUILDER_PORT_NUMBER),
@@ -66,6 +50,7 @@ def launch_espresso(plan, l1_rpc_url, espresso_params):
         "ESPRESSO_SEQUENCER_L1_PROVIDER": l1_rpc_url,
         "ESPRESSO_SEQUENCER_DATABASE_MAX_CONNECTIONS": "25",
         "ESPRESSO_SEQUENCER_STORAGE_PATH": "/data/espresso",
+        "RUST_LOG": "info"
     }
 
     config = ServiceConfig(
@@ -79,10 +64,6 @@ def launch_espresso(plan, l1_rpc_url, espresso_params):
 
     sequencer_api_url = "http://{}:{}".format(
         service.hostname, service.ports[SEQUENCER_PORT_ID].number
-    )
-
-    launch_das(
-        plan, espresso_params.get("das_image", IMAGE_NAME_DAS), sequencer_api_url
     )
 
     return sequencer_api_url
