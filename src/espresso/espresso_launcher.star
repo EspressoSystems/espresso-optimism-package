@@ -1,43 +1,30 @@
 ethereum_package = import_module("github.com/ethpandaops/ethereum-package/main.star")
 
 IMAGE_NAME_ESPRESSO = (
-    "ghcr.io/espressosystems/espresso-sequencer/espresso-dev-node:release-goldendoodle"
+    "ghcr.io/espressosystems/espresso-sequencer/espresso-dev-node:20250410-dev-node-pos-preview"
 )
 SERVICE_NAME_ESPRESSO = "op-espresso-devnode"
-
-IMAGE_NAME_DAS = "us-docker.pkg.dev/oplabs-tools-artifacts/images/op-batcher:develop"
-SERVICE_NAME_ESPRESSO_DAS = "op-espresso-das"
 
 SEQUENCER_PORT_ID = "sequencer"
 SEQUENCER_PORT_NUMBER = 24000
 BUILDER_PORT_ID = "builder"
 BUILDER_PORT_NUMBER = 31003
 
-DAS_PORT_ID = "espresso-das"
-DAS_PORT_NUMBER = 3100
-
 USED_PORTS = {
     SEQUENCER_PORT_ID: PortSpec(
         number=SEQUENCER_PORT_NUMBER,
         transport_protocol="TCP",
         application_protocol="HTTP",
-        wait="10s",
+        wait="2m",
     ),
     BUILDER_PORT_ID: PortSpec(
         number=BUILDER_PORT_NUMBER,
         transport_protocol="TCP",
         application_protocol="HTTP",
-        wait="10s",
+        wait="2m",
     ),
 }
 
-USED_PORTS_DAS = {
-    DAS_PORT_ID: PortSpec(
-        number=DAS_PORT_NUMBER,
-        transport_protocol="TCP",
-        application_protocol="HTTP",
-    ),
-}
 
 
 def launch_espresso(plan, l1_rpc_url, espresso_params):
@@ -50,7 +37,7 @@ def launch_espresso(plan, l1_rpc_url, espresso_params):
         "ESPRESSO_SEQUENCER_L1_PROVIDER": l1_rpc_url,
         "ESPRESSO_SEQUENCER_DATABASE_MAX_CONNECTIONS": "25",
         "ESPRESSO_SEQUENCER_STORAGE_PATH": "/data/espresso",
-        "RUST_LOG": "info"
+        "RUST_LOG": "trace"
     }
 
     config = ServiceConfig(
