@@ -91,6 +91,7 @@ SUBCATEGORY_PARAMS = {
         "isthmus_time_offset",
         "interop_time_offset",
         "fund_dev_accounts",
+        "pre_approve_batcher"
     ],
     "batcher_params": ["image", "extra_params", "dry_run"],
     "proposer_params": ["image", "extra_params", "game_type", "proposal_interval"],

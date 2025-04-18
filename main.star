@@ -104,6 +104,7 @@ def run(plan, args):
         optimism_args_with_right_defaults,
         l1_network,
         altda_deploy_config,
+        espresso_args
     )
 
     jwt_file = plan.upload_files(
