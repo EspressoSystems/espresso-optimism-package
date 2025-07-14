@@ -142,7 +142,7 @@ SUBCATEGORY_PARAMS = {
         "isthmus_time_offset",
         "interop_time_offset",
         "fund_dev_accounts",
-        "pre_approve_batcher"
+        "pre_approve_batcher",
     ],
     "proxyd_params": ["image", "tag", "extra_params"],
     "batcher_params": ["image", "extra_params", "dry_run"],
