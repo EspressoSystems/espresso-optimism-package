@@ -19,6 +19,7 @@ _DEFAULT_NETWORK_PARAMS = {
     "isthmus_time_offset": None,
     "interop_time_offset": None,
     "fund_dev_accounts": True,
+    "pre_approve_batcher": False,
 }
 
 _DEFAULT_ARGS = {
