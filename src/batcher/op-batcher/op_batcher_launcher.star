@@ -61,8 +61,8 @@ def launch(
         da_server_context,
     )
 
+    plan.print(config.cmd)
     if batcher_params.dry_run:
-        plan.print(config.cmd)
         return "op_batcher"
     service = plan.add_service(service_name, config)
     service_url = util.make_service_http_url(service)
