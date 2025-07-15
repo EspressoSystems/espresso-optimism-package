@@ -15,13 +15,13 @@ USED_PORTS = {
         number=SEQUENCER_PORT_NUMBER,
         transport_protocol="TCP",
         application_protocol="HTTP",
-        wait="5m",
+        wait="2m",
     ),
     BUILDER_PORT_ID: PortSpec(
         number=BUILDER_PORT_NUMBER,
         transport_protocol="TCP",
         application_protocol="HTTP",
-        wait="5m",
+        wait="2m",
     ),
 }
 
