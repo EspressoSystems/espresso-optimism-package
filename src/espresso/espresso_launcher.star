@@ -15,13 +15,13 @@ USED_PORTS = {
         number=SEQUENCER_PORT_NUMBER,
         transport_protocol="TCP",
         application_protocol="HTTP",
-        wait="2m",
+        wait="5m",
     ),
     BUILDER_PORT_ID: PortSpec(
         number=BUILDER_PORT_NUMBER,
         transport_protocol="TCP",
         application_protocol="HTTP",
-        wait="2m",
+        wait="5m",
     ),
 }
 
@@ -32,11 +32,12 @@ def launch_espresso(plan, l1_rpc_url, espresso_params):
         "ESPRESSO_BUILDER_PORT": str(BUILDER_PORT_NUMBER),
         "ESPRESSO_SEQUENCER_API_PORT": str(SEQUENCER_PORT_NUMBER),
         "ESPRESSO_DEPLOYER_ACCOUNT_INDEX": "0",
-        "ESPRESSO_DEV_NODE_PORT": str(SEQUENCER_PORT_NUMBER + 1),
+        "ESPRESSO_DEV_NODE_PORT": "24001",
         "ESPRESSO_SEQUENCER_ETH_MNEMONIC": ethereum_package.constants.DEFAULT_MNEMONIC,
         "ESPRESSO_SEQUENCER_L1_PROVIDER": l1_rpc_url,
         "ESPRESSO_SEQUENCER_DATABASE_MAX_CONNECTIONS": "25",
         "ESPRESSO_SEQUENCER_STORAGE_PATH": "/data/espresso",
+        "ESPRESSO_SEQUENCER_PLONK_VERIFIER_ADDRESS": "0xb4b46bdaa835f8e4b4d8e208b6559cd267851051",
         "RUST_LOG": "info"
     }
 
