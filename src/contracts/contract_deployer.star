@@ -193,7 +193,7 @@ def deploy_contracts(
         intent_chain = dict(CANNED_VALUES)
 
         if chain.network_params.pre_approve_batcher:
-            intent_chain["preApprovedBatcherKey"] = read_chain_private_key_cmd("batcher", chain_id)
+            intent_chain["preApprovedBatcherKey"] = read_chain_cmd("batcher", chain_id)
 
         intent_chain.update(
             {
