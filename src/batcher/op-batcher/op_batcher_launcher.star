@@ -118,7 +118,10 @@ def get_batcher_config(
     if observability_helper.enabled:
         observability.configure_op_service_metrics(cmd, ports)
 
-    cmd += batcher_params.extra_params
+    # Filter out any duplicate private-key parameters from extra_params
+    for param in batcher_params.extra_params:
+        if not param.startswith("--private-key"):
+            cmd.append(param)
 
     return ServiceConfig(
         image=image,
