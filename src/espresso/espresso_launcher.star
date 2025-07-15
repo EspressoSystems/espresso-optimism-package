@@ -37,7 +37,7 @@ def launch_espresso(plan, l1_rpc_url, espresso_params):
         "ESPRESSO_SEQUENCER_L1_PROVIDER": l1_rpc_url,
         "ESPRESSO_SEQUENCER_DATABASE_MAX_CONNECTIONS": "25",
         "ESPRESSO_SEQUENCER_STORAGE_PATH": "/data/espresso",
-        "ESPRESSO_SEQUENCER_PLONK_VERIFIER_ADDRESS": "0xb4b46bdaa835f8e4b4d8e208b6559cd267851051",
+        # Let the system deploy a new PLONK verifier contract
         "RUST_LOG": "info"
     }
 
