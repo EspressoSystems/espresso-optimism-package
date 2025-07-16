@@ -1,7 +1,7 @@
 ethereum_package = import_module("github.com/ethpandaops/ethereum-package/main.star")
 
 IMAGE_NAME_ESPRESSO = (
-    "ghcr.io/espressosystems/espresso-sequencer/espresso-dev-node:release-goldendoodle"
+    "ghcr.io/espressosystems/espresso-sequencer/espresso-dev-node:release-colorful-snake"
 )
 SERVICE_NAME_ESPRESSO = "op-espresso-devnode"
 
@@ -35,7 +35,6 @@ def launch_espresso(plan, l1_rpc_url, espresso_params):
         "ESPRESSO_DEV_NODE_PORT": "24001",
         "ESPRESSO_SEQUENCER_ETH_MNEMONIC": ethereum_package.constants.DEFAULT_MNEMONIC,
         "ESPRESSO_SEQUENCER_L1_PROVIDER": l1_rpc_url,
-        "ESPRESSO_SEQUENCER_DATABASE_MAX_CONNECTIONS": "25",
         "ESPRESSO_SEQUENCER_STORAGE_PATH": "/data/espresso",
         # Let the system deploy a new PLONK verifier contract
         "RUST_LOG": "info"
