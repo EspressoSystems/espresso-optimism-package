@@ -192,8 +192,8 @@ def deploy_contracts(
         chain_id = str(chain.network_params.network_id)
         intent_chain = dict(CANNED_VALUES)
 
-        #if chain.network_params.pre_approve_batcher:
-        #    intent_chain["preApprovedBatcherKey"] = read_chain_cmd("batcher", chain_id)
+        if chain.network_params.pre_approve_batcher:
+            intent_chain["preApprovedBatcherKey"] = read_chain_cmd("batcher", chain_id)
 
         intent_chain.update(
             {
@@ -278,7 +278,7 @@ def deploy_contracts(
                 # merge the two intent.json files, ensuring that the chains array is merged correctly
                 "jq -s 'add + {chains: map(.chains) | transpose | map(add)}' /network-data/intent-a.json /network-data/intent-b.json > /network-data/intent-merged.json",
                 # convert the merged intent.json back to toml
-                # "cat /network-data/intent-merged.json",
+                "cat /network-data/intent-merged.json",
                 "cat /network-data/intent-merged.json | dasel -r json -w toml > /network-data/intent.toml",
             ]
         ),
