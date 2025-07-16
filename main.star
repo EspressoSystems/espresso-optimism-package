@@ -89,8 +89,8 @@ def run(plan, args={}):
         plan.print("Waiting for L1 to start up")
         wait_for_sync.wait_for_startup(plan, l1_config_env_vars)
 
-    if espresso_args != None:
-        espresso.launch_espresso(plan, l1_rpc_url, espresso_args)
+    #if espresso_args != None:
+    #    espresso.launch_espresso(plan, l1_rpc_url, espresso_args)
 
     deployment_output = contract_deployer.deploy_contracts(
         plan,
@@ -99,7 +99,7 @@ def run(plan, args={}):
         optimism_args,
         l1_network,
         altda_deploy_config,
-        espresso_args
+        None
     )
 
     jwt_file = plan.upload_files(
