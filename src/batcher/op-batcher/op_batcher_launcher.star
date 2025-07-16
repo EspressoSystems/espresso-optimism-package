@@ -62,8 +62,8 @@ def launch(
     )
 
     plan.print(config.cmd)
-    if batcher_params.dry_run:
-        return "op_batcher"
+    # if batcher_params.dry_run:
+    #     return "op_batcher"
     service = plan.add_service(service_name, config)
     service_url = util.make_service_http_url(service)
 
