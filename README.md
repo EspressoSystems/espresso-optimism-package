@@ -1,5 +1,7 @@
 # Welcome to Optimism Package
 
+> **Note:** This is the Espresso version of optimism-package that is used in the [optimism-espresso-integration](https://github.com/EspressoSystems/optimism-espresso-integration) Kurtosis devnet.
+
 The default package for Optimism. The kurtosis package uses [op-deployer](https://github.com/ethereum-optimism/optimism/tree/develop/op-deployer) to manage
 the L2 chains and all associated artifacts such as contract deployments.
 
